@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQureyでツールチップ以外をクリックしたら非表示にする</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tooltip {
+      display: none;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+    jQuery(function($) {
+      $('.tooltip-show').on('click', function(){
+        $('.tooltip').hide();
+        $(this).next('.tooltip').show();
+        return false;
+      });
+
+      $(document).on('click', function(e){
+        if (!$(e.target).closest('.tooltip').length) {
+          $('.tooltip').hide();
+        }
+      });
+    });
+  </script>
+</head>
+<body class="p-3">
+  <ul class="[&>li]:mb-3">
+    <li><a href="javascript:void(0);" class="tooltip-show"><img src="https://placehold.jp/f52424/ffffff/150x150.png" class="!inline"></a><div class="tooltip">ツールチップ1</div></li>
+    <li><a href="javascript:void(0);" class="tooltip-show"><img src="https://placehold.jp/3d4070/ffffff/150x150.png" class="!inline"></a><div class="tooltip">ツールチップ2</div></li>
+    <li><a href="javascript:void(0);" class="tooltip-show"><img src="https://placehold.jp/14b611/ffffff/150x150.png" class="!inline"></a><div class="tooltip">ツールチップ33</div></li>
+  </ul>
+</body>
+</html>

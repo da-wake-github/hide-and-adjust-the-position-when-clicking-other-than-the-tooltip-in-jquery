@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event.target</title>
+</head>
+<body>
+  <script>
+    // リストの作成
+    const ul = document.createElement('ul');
+    document.body.appendChild(ul);
+
+    const li1 = document.createElement('li');
+    const li2 = document.createElement('li');
+    li1.textContent = 'li1のテキスト';
+    li2.textContent = 'li2のテキスト';
+    ul.appendChild(li1);
+    ul.appendChild(li2);
+
+    function hide(evt) {
+      console.log(`evt:`);
+      console.log(evt);
+      console.log(`evt.target:`);
+      console.log(evt.target);
+      console.log(`evt.currentTarget:`);
+      console.log(evt.currentTarget);
+      // evt.target はクリックされた <li> 要素を参照しています。
+      // これはこのコンテキストで親である <ul> を参照している evt.currentTarget とは異なります。
+      evt.target.style.visibility = 'hidden';
+    }
+
+    // リストにリスナーを接続します
+    // <li> がクリックされた時に発行されます。
+    ul.addEventListener('click', hide, false);
+  </script>
+</body>
+</html>
