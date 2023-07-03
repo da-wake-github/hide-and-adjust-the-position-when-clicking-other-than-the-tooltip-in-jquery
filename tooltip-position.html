@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQureyでツールチップ以外をクリックしたら非表示にする</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tooltip {
+      display: none;
+      position: absolute;
+      right: 0;
+      width: 450px;
+      filter: drop-shadow(3px 4px 3px rgba(0, 0, 0, 0.15));
+    }
+    .tooltip::before,
+    .tooltip::after {
+      content: "";
+      position: absolute;
+      bottom: -30px;
+      right: 50px;
+      width: 0;
+      height: 0;
+      border: 30px solid transparent;
+      border-top: 30px solid rgb(132 204 22);
+      border-bottom: none;
+    }
+    .tooltip::after {
+      bottom: -24px;
+      border-top: 30px solid #fff;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+    jQuery(function($) {
+      const setTooltipPosition = function($tooltip) {
+        const ADJUSTMENT_POSITION = 30;
+        const parentsHeight = $tooltip.parents('li').height();
+        $tooltip.css({'bottom': `${parentsHeight + ADJUSTMENT_POSITION}px`});
+      }
+
+      $('.tooltip-show').on('click', function(){
+        $('.tooltip').hide();
+        setTooltipPosition($(this).next('.tooltip'));
+        $(this).next('.tooltip').show();
+        return false;
+      });
+
+      $(document).on('click', function(e){
+        if (!$(e.target).closest('.tooltip').length) {
+          $('.tooltip').hide();
+        }
+      });
+    });
+  </script>
+</head>
+<body class="pl-[400px]">
+  <p class="text-4xl w-[30rem] leading-relaxed tracking-widest">その人はしばらく棚をさがしてもむだだああ、どうか。みんながめいめいじぶんの神さまのとこへ持って来たらしく、さっきなかった一つの街燈が、青白く立派に光って立ったのです。</p>
+
+  <ul class="flex gap-3 [&>li]:shrink-0">
+    <li class="relative">
+      <a href="javascript:void(0);" class="tooltip-show"><img src="https://placehold.jp/f52424/ffffff/150x150.png" class="!inline"></a>
+      <div class="tooltip border-lime-500 border-4 rounded p-5 bg-white"><p class="text-xl font-bold text-center mb-3">ツールチップ1</p>カムパネルラはきのどくそうに、だまって正面の時計を見ているのでした。そうすると、向こうの河岸に二本の針が、くっきり十一時を指しました。そうすると、台の下に大きな一つの小さな星に見えるのでしたし、カムパネルラはわけもないと思いました。</div>
+    </li>
+    <li class="relative">
+      <a href="javascript:void(0);" class="tooltip-show"><img src="https://placehold.jp/3d4070/ffffff/150x150.png" class="!inline"></a>
+      <div class="tooltip border-lime-500 border-4 rounded p-5 bg-white"><p class="text-xl font-bold text-center mb-3">ツールチップ2</p>向こうとこっちの岸にね、おっかさん。まあ、あの烏カムパネルラのとなりの席を指さしました。さあもうきっと僕は僕のために、向こうの席の姉がひとりごとのようにこっちを見ました。隣りには黒い洋服をきちんと着たせいの高い車掌が、いつかまた深く首をたれて、そこにお祭りでもあるというように咲き、鳥が一疋、丘の上に立っていました。</div>
+    </li>
+    <li class="relative">
+      <a href="javascript:void(0);" class="tooltip-show"><img src="https://placehold.jp/14b611/ffffff/150x150.png" class="!inline"></a>
+      <div class="tooltip border-lime-500 border-4 rounded p-5 bg-white"><p class="text-xl font-bold text-center mb-3">ツールチップ3</p>つりがねそうか野ぎくかの花が、いっぱいに舞いおりて来ました。けれども、それはいつか白い柔らかな靴をはいていたんでない早くあすこへ行って一本の木というふうではきはき談しているのでした。頭の上の槍のようなくらいぼんやりした三角標の形に書いた大きな図がかかっていました。</div>
+    </li>
+  </ul>
+</body>
+</html>
