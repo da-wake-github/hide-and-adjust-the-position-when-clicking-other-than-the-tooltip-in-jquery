@@ -1,7 +1,7 @@
-# jQureyでツールチップ以外をクリックしたら非表示にする
+# jQureyでツールチップ以外をクリックしたら非表示にして位置を調整する
 
 ## サンプルページ
-- [サンプルページを表示](https://da-wake-github.github.io/hide-when-clicking-other-than-tooltip-with-jquery/)
+- [サンプルページを表示](https://da-wake-github.github.io/hide-and-adjust-the-position-when-clicking-other-than-the-tooltip-in-jquery/)
 
 ## 参考サイト
 - [# jQueryで特定要素以外クリック時のイベントを取得する - Qiita](https://qiita.com/khtkq/items/1e504e2dacb41e2668f2)
